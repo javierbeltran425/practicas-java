@@ -86,6 +86,29 @@ public class Factura {
 
         SimpleDateFormat df = new SimpleDateFormat("dd 'de' MMMM, yyyy");
 
+        for(ItemFactura item: this.items){
+            if(item == null) {
+                continue;
+            }
+            sb.append(item.getProducto().getCodigo())
+                    .append("\t")
+                    .append(item.getProducto().getNombre())
+                    .append("\t")
+                    .append(item.getProducto().getPrecio())
+                    .append("\t")
+                    .append(item.getCantidad())
+                    .append("\t")
+                    .append(item.calcularImporte())
+                    .append("\n");
+        }
+
+        sb.append("Fecha Emisión: ")
+                .append(df.format(this.fecha))
+                .append("\n");
+
+        sb.append("\nGran Total: ")
+                .append(calcularTotal());
+
         return sb.toString();
     }
 }
