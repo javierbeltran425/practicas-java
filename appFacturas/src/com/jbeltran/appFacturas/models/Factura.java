@@ -62,11 +62,11 @@ public class Factura {
     public float calcularTotal() {
         float total = 0.0f;
 
-        for (ItemFactura item : this.items) {
-            if (item == null) {
+        for (int i = 0; i < indiceItems; i++) {
+            if (items[i] == null) {
                 continue;
             }
-            total += item.calcularImporte();
+            total += items[i].calcularImporte();
         }
         return total;
     }
@@ -86,11 +86,11 @@ public class Factura {
 
         SimpleDateFormat df = new SimpleDateFormat("dd 'de' MMMM, yyyy");
 
-        for(ItemFactura item: this.items){
-            if(item == null) {
+        for(int i = 0; i < indiceItems; i++){
+            if(items[i] == null) {
                 continue;
             }
-            sb.append(item.getProducto().getCodigo())
+            /*sb.append(item.getProducto().getCodigo())
                     .append("\t")
                     .append(item.getProducto().getNombre())
                     .append("\t")
@@ -99,6 +99,10 @@ public class Factura {
                     .append(item.getCantidad())
                     .append("\t")
                     .append(item.calcularImporte())
+                    .append("\n");*/
+
+            sb.append(items[i].toString())
+                    .append(calcularTotal())
                     .append("\n");
         }
 
